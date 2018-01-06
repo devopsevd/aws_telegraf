@@ -1,0 +1,12 @@
+[Unit]
+Description=telegraf container
+Requires=docker.service
+After=docker.service
+[Service]
+User=root
+Restart=on-failure
+RestartSec=45
+ExecStart=/usr/bin/docker start -a telegraf
+ExecStop=/usr/bin/docker stop -t 2 telegraf
+[Install]
+WantedBy=multi-user.target
